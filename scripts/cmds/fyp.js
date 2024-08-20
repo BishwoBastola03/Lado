@@ -1,3 +1,4 @@
+const { GoatWrapper } = require('fca-liane-utils');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
@@ -49,11 +50,7 @@ module.exports = {
     },
   },
   onStart: async function ({ api, event, args }) {
-    const isAuthorValid = await checkAuthor(module.exports.config.author);
-    if (!isAuthorValid) {
-      await api.sendMessage("Author changer alert! this cmd belongs to Vex_Kshitiz.", event.threadID, event.messageID);
-      return;
-    }
+    
 
     api.setMessageReaction("✨", event.messageID, (err) => {}, true);
     const query = args.join(' ');
@@ -86,3 +83,5 @@ module.exports = {
     }
   },
 };
+const wrapper = new GoatWrapper(module.exports);
+wrapper.applyNoPrefix({ allowPrefix: true });

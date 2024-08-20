@@ -1,15 +1,6 @@
 const axios = require("axios");
 
-async function checkAuthor(authorName) {
-  try {
-    const response = await axios.get('https://author-check.vercel.app/name');
-    const apiAuthor = response.data.name;
-    return apiAuthor === authorName;
-  } catch (error) {
-    console.error("Error checking author:", error);
-    return false;
-  }
-}
+
 
 const moduleConfig = {
   name: "htv", 
@@ -35,12 +26,7 @@ module.exports = {
       return;
     }
 
-    try {
-      const isAuthorValid = await checkAuthor(module.exports.config.author);
-      if (!isAuthorValid) {
-        await message.reply("Author changer alert! this cmd belongs to Vex_Kshitiz.");
-        return;
-      }
+
 
       let response;
       if (episodeNumber !== undefined) {
